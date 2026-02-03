@@ -132,6 +132,10 @@
 <body>
   <canvas id="confettiCanvas"></canvas>
 
+  <audio id="yesAudio" preload="auto">
+    <source src="yes-sound.mp3" type="audio/mpeg">
+  </audio>
+
   <main class="card">
     <!-- ANIMAL WITH HEART -->
     <svg class="art" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
@@ -291,13 +295,19 @@
 
     /* ---------- YES CLICK ---------- */
     yesBtn.addEventListener("click", () => {
+      yesAudio.currentTime = 0;
+      yesAudio.play().catch(() => {});
+
       zone.style.display = "none";
-      hint.style.display = "none";     // HIDE THE HINT
+      hint.style.display = "none";
       result.style.display = "block";
       resizeConfettiCanvas();
       fullScreenConfetti();
     });
+
+    noBtn.addEventListener("click", e => e.preventDefault());
   </script>
 </body>
 </html>
+
 
